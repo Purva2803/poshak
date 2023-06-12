@@ -1,0 +1,133 @@
+import React from "react";
+import { useState, useEffect } from "react";
+import { CartContext } from "../context/Cartcontext";
+import { NavLink } from "react-router-dom";
+
+
+
+
+
+export const CartPage = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/user/cart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "authorization": "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        const data = await response.json();
+        console.log(data);
+        setCartItems(data.cart);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const removeFromCart = async (productId) => {
+    try {
+      const response = await fetch("/api/user/cart/:productId", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "authorization": "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ productId }),
+      });
+     if (response.status === 401) {
+        window.location.href = "/login";
+      }
+      else if (response.status === 200) {
+
+      const data = await response.json();
+      console.log(data);
+      setCartItems(cartItems.filter((item) => item._id !== productId));
+        }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const increaseQuantity = (productId) => {
+    const updatedcartItems = cartItems.map((product) => {
+      if (product._id === productId) {
+        return {
+          ...product,
+          quantity: (product.quantity || 1) + 1,
+        };
+      }
+      return product;
+    });
+  
+    setCartItems(updatedcartItems);
+  };
+
+  const decreaseQuantity = (productId) => {
+    const updatedcartItems = cartItems.map((product) => {
+      if (product._id === productId) {
+        return {
+          ...product,
+          quantity: Math.max((product.quantity || 1) - 1, 1),
+        };
+      }
+      return product;
+    });
+  
+    setCartItems(updatedcartItems);
+  };
+
+
+  return (
+    <div>
+      <header>
+        Items in cart: {cartItems.length}
+      </header>
+      <main>
+        <ul>
+          {cartItems.map((product) => (
+            <li key={product._id}>
+              <img src={product.image} alt={product.name} />
+              <h3>{product.name}</h3>
+              <h4>{product.price}</h4>
+              <h5>{product.dealer}</h5>
+              <h6>{product.category}</h6>
+              
+
+
+              
+              <button onClick={() => increaseQuantity(product._id)}>
+                +
+              </button>
+              <button onClick={() => decreaseQuantity(product._id)}>
+                -
+              </button>
+              <p>Quantity: {product.quantity || 1}</p>
+              <button onClick={() => removeFromCart(product._id)}>
+                Remove
+              </button>
+              <NavLink to="/checkout">
+                <button onClick={() => {}}>Check Out</button>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </div>
+  );
+
+// return (
+//     <div>
+//         hi
+//     </div>
+//     );
+};
+
+  
+  
