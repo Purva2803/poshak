@@ -11,6 +11,7 @@ const SignupPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
 
   const location = useLocation();
 
@@ -27,12 +28,14 @@ const SignupPage = () => {
           firstName,
           lastName,
           email,
+          username,
           password,
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
+        
         localStorage.setItem('token', data.encodedToken);
 
         // Redirect the user to the previous page
@@ -74,6 +77,7 @@ const SignupPage = () => {
           />
         </label>
         <br />
+        
         <label>
           Email:
           <input

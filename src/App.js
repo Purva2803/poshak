@@ -22,6 +22,7 @@ import { CartContext } from "./context/Cartcontext";
 import { useContext } from "react";
 
 import { CgProfile } from "react-icons/cg";
+import { Search } from "./components/Search";
 
 
 
@@ -38,7 +39,7 @@ function ProtectedRoute({ component: Component, isLoggedin, ...rest }) {
 }
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("");
+ 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
   
@@ -51,28 +52,7 @@ function App() {
     setShowDropdown(!showDropdown);
   };
 
-  const handleSearch = () => {
-    // Perform the search and update the filtered products
-    fetchProducts(searchTerm);
-  };
-
-  const fetchProducts = async (searchTerm) => {
-    try {
-      const response = await fetch(`/api/products`);
-      const data = await response.json();
-      setFilteredProducts(data.products);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
-
-  
-  useEffect(() => {
-    // Fetch the initial products
-    fetchProducts(searchTerm);
-  }, [searchTerm]);
-
-  const handleCartClick = () => {
+   const handleCartClick = () => {
     if (isLoggedin) {
       navigate('/cart');
     } else {
@@ -96,17 +76,16 @@ function App() {
         </NavLink>
 
         <div style={styles.searchContainer}>
-          <input
-            type="text"
-            placeholder="Search for a product"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button onClick={handleSearch} style={styles.link}>
-            Search
-          </button>
+          
+            <Search />
+         
+         
         </div>
-
+         <div style={styles.dropdownContainer}>
+          <NavLink to="/product" style={styles.link}>
+            Explore
+          </NavLink>
+         </div>
         <div style={styles.dropdownContainer}>
           <button onClick={handleDropdownToggle} style={styles.link}>
             <CgProfile style={styles.icon} />
@@ -167,7 +146,8 @@ function App() {
         <Route path="/login" element={<Login onLogin={handleLoginSuccess} />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/checkout/:productId" element={<Checkout />} />
         <Route path="/thankyou" element={<h1>Thank you for placing the order</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
         <Route
@@ -176,16 +156,7 @@ function App() {
     <>
       <HomePage />
 
-      {searchTerm && (
-        <>
-          {filteredProducts && filteredProducts.map((product) => (
-            <div key={product._id}>
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-            </div>
-          ))}
-        </>
-      )}
+
     </>
   }
 />

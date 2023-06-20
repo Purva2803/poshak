@@ -112,7 +112,7 @@ export const CartPage = () => {
               <button onClick={() => removeFromCart(product._id)}>
                 Remove
               </button>
-              <NavLink to="/checkout">
+              <NavLink to={`/checkout/${product._id}`}>
                 <button onClick={() => {}}>Check Out</button>
               </NavLink>
             </li>

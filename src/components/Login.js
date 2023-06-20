@@ -10,8 +10,10 @@ const Login = () => {
   const handleChange = (event) => {
     if (event.target.name === "email") {
       setEmail(event.target.value);
+      console.log(event.target.value)
     } else if (event.target.name === "password") {
       setPassword(event.target.value);
+      console.log(event.target.value)
     }
   };
 
@@ -29,13 +31,12 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+        body: JSON.stringify({ email, password }),
 
-      const data = await response.json();
+      });
+   
+       const data = await response.json();
+      console.log(data)
 
       if (response.ok) {
         handleLoginSuccess(true);

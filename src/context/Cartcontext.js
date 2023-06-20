@@ -62,7 +62,7 @@ export const CartProvider = ({ children }) => {
     };
     const handleLoginSuccess = () => {
       setIsLoggedin(true);
-      setShowDropdown(false);
+      setShowDropdown(true);
     };
  
     const removeFromWishlist = (productId) => {
