@@ -51,10 +51,10 @@ export const Checkout = () => {
   return (
     <div>
     <li key={product._id} style={styles.cartItem}>
-      <img src={product.image} alt={product.name} />
+      <img src={product.image} alt={product.name}  height={"200"} width={"200"}/>
       <h3>{product.name}</h3>
-      <h4>{product.price}</h4>
-      <h5>{product.dealer}</h5>
+      <h4>price :{product.price}</h4>
+      <h5>dealer :{product.dealer}</h5>
       <button onClick={() => handleSelectAddress()}>Select Address</button>
       <NavLink to={"/thankyou"}>
         <button>Place Order</button>

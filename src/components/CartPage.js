@@ -99,11 +99,11 @@ export const CartPage = () => {
         <ul>
           {cartItems.map((product) => (
             <li key={product._id}>
-              <img src={product.image} alt={product.name} />
+              <img src={product.image} alt={product.name} height={"200"} width={"200"}/>
               <h3>{product.name}</h3>
-              <h4>{product.price}</h4>
-              <h5>{product.dealer}</h5>
-              <h6>{product.category}</h6>
+              <h4>price :<span>{product.price}</span></h4>
+              <h5>dealer :<span>{product.dealer}</span></h5>
+              <h5>category :{product.category}</h5>
 
               <button onClick={() => increaseQuantity(product._id)}>+</button>
               <button onClick={() => decreaseQuantity(product._id)}>-</button>

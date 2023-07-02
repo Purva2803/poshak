@@ -67,11 +67,11 @@ export const SingleProductPage = () => {
     <div>
       <>
        
-        <img src={product.image} alt={product.title} />
+        <img src={product.image} alt={product.title} height={"200"} width={"200"}/>
         <h2>{product.name}</h2>
-        <h3>{product.dealer}</h3>
-        <h4>{product.category}</h4>
-        <h5>{product.price}</h5>
+        <h3>dealer :{product.dealer}</h3>
+        <h4>category :{product.category}</h4>
+        <h5>price :{product.price}</h5>
         <button onClick={() => AddToWishlist(product)}>Add to wishlist</button>
         {isInCart(product._id) ? (
                 <NavLink to="/cart">
