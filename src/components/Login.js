@@ -1,19 +1,21 @@
 import React, { createContext, useState } from "react";
-import { useContext } from "react";
-import { CartContext } from "../context/Cartcontext";
 
-const Login = () => {
+import {  useEffect, useContext } from 'react';
+import { AuthContext } from ".."
+
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLoginSuccess} = useContext(CartContext)
+
+  const { token, setToken, setUser } = useContext(AuthContext);
 
   const handleChange = (event) => {
     if (event.target.name === "email") {
       setEmail(event.target.value);
-      console.log(event.target.value)
+      console.log(event.target.value);
     } else if (event.target.name === "password") {
       setPassword(event.target.value);
-      console.log(event.target.value)
+      console.log(event.target.value);
     }
   };
 
@@ -32,20 +34,19 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-
       });
    
-       const data = await response.json();
-      console.log(data)
+      const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
-        handleLoginSuccess(true);
         window.alert("Login successful");
         localStorage.setItem("token", data.encodedToken);
+        setToken(data.encodedToken);
         window.location.href = "/";
       } else {
         window.alert("Login unsuccessful");
-        handleLoginSuccess(false);
+        
       }
     } catch (error) {
       console.error("Error:", error);
@@ -94,7 +95,6 @@ const Login = () => {
     </div>
   );
 };
-
 
 
 

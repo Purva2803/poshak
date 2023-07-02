@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
 
 
-    const [isLoggedin, setIsLoggedin] = useState(false);
+   
    const [showDropdown, setShowDropdown] = useState(false);
   const handleCategory = (category) => {
     setSelectedCategory(category);
@@ -60,10 +60,7 @@ export const CartProvider = ({ children }) => {
       const updatedCart = cartItems.filter((product) => product._id !== productId);
       setCartItems(updatedCart);
     };
-    const handleLoginSuccess = () => {
-      setIsLoggedin(true);
-      setShowDropdown(true);
-    };
+    
  
     const removeFromWishlist = (productId) => {
     
@@ -115,9 +112,8 @@ export const CartProvider = ({ children }) => {
           products,
           selectedCategory,
           handleCategory,
-          handleLoginSuccess,
-          setIsLoggedin,
-          isLoggedin,
+          
+          showDropdown,
           setShowDropdown
 
 

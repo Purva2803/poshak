@@ -50,23 +50,32 @@ export const Checkout = () => {
 
   return (
     <div>
-      {
-        <li key={product._id}>
-          <img src={product.image} alt={product.name} />
-          <h3>{product.name}</h3>
-          <h4>{product.price}</h4>
-          <h5>{product.dealer}</h5>
-
-          <button onClick={() => removeFromCart(product._id)}>Remove</button>
-          <button onClick={() => handleAddAddress()}>Add Address</button>
-          <button onClick={() => handleUpdateAddress()}>Update Address</button>
-          <button onClick={() => handleDeleteAddress()}>Delete Address</button>
-          <button onClick={() => handleSelectAddress()}>Select Address</button>
-          <NavLink to={"/thankyou"}>
-            <button>Place Order</button>
-          </NavLink>
-        </li>
-      }
-    </div>
+    <li key={product._id} style={styles.cartItem}>
+      <img src={product.image} alt={product.name} />
+      <h3>{product.name}</h3>
+      <h4>{product.price}</h4>
+      <h5>{product.dealer}</h5>
+      <button onClick={() => handleSelectAddress()}>Select Address</button>
+      <NavLink to={"/thankyou"}>
+        <button>Place Order</button>
+      </NavLink>
+  
+      <button onClick={() => removeFromCart(product._id)}>Remove</button>
+      
+      
+    </li>
+  </div>
+  
   );
 };
+
+const styles = {
+  cartItem: {
+    marginBottom: '20px', // Adjust the value as needed to create space between items
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+};
+

@@ -81,37 +81,38 @@ export const ProductPage = () => {
 
 
   
-
-  const myProducts = products.filter((product) => product.category === selectedCategory.toLowerCase());
-
+const myProducts = products.filter((product) => product.category == selectedCategory);
   return (
     <div>
       {selectedCategory && window.location.pathname === `/product/${selectedCategory}` ? (
         // Render filtered products if a category is selected
-        myProducts.map((product) => (
-          <div key={product._id}>
-            <div>
-              <NavLink to={`/products/${product._id}`} key={product._id}>
-                <img src={product.image} alt={product.name} height={"200"} width={"200"} />
+        <div style={styles.container}>
+      {myProducts.map((product) => (
+        <div key={product._id} style={styles.card}>
+          <div>
+            <NavLink to={`/products/${product._id}`} key={product._id}>
+              <img src={product.image} alt={product.name} height={"200"} width={"200"} />
+            </NavLink>
+            <h2>{product.name}</h2>
+            <h3>{product.price}</h3>
+            <h4>{product.dealer}</h4>
+            <h5>{product.category}</h5>
+            <h5>{product.rating}</h5>
+            {isInCart(product._id) ? (
+              <NavLink to="/cart">
+                <button>Go to Cart</button>
               </NavLink>
-              <h2>{product.name}</h2>
-              <h3>{product.price}</h3>
-              <h4>{product.dealer}</h4>
-              <h5>{product.category}</h5>
-              <h5>{product.rating}</h5>
-              {isInCart(product._id) ? (
-                <NavLink to="/cart">
-                  <button>Go to Cart</button>
-                </NavLink>
-              ) : (
-                <button onClick={() => AddToCart(product)}>Add to Cart</button>
-              )}
-              <button onClick={() => AddToWishlist(product)}>
-                <FaHeart />
-              </button>
-            </div>
+            ) : (
+              <button onClick={() => AddToCart(product)}>Add to Cart</button>
+            )}
+            <button onClick={() => AddToWishlist(product)}>
+              <FaHeart />
+            </button>
           </div>
-        ))
+        </div>
+      ))}
+    </div>
+        
       ) : (
         // Render all products if no category is selected
         <>
@@ -149,3 +150,23 @@ export const ProductPage = () => {
   );
 };
 ;
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '1rem',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    margin: '0.5rem',
+    width: '200px',
+  },
+};

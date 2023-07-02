@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -48,8 +49,12 @@ export const Search = () => {
           <div>
             {filteredProducts.map((product) => (
               <div key={product._id}>
+                <NavLink to={`/products/${product._id}`} key={product._id}>
+
                 <h2>{product.name}</h2>
                 <p>{product.price}</p>
+                
+                </NavLink>
               </div>
             ))}
           </div>

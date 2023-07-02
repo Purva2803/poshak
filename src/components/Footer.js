@@ -21,12 +21,11 @@ export const Footer = () => {
   );
 };
 
-
 const styles = {
   footer: {
     backgroundColor: '#10000e',
     color: '#FFD700', // Golden yellow color
-    position: 'sticky',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     width: '100%',
@@ -34,6 +33,8 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  
+    
   },
   icon: {
     color: '#FFD700', // Golden yellow color

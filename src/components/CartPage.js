@@ -2,14 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { CartContext } from "../context/Cartcontext";
 import { NavLink } from "react-router-dom";
-
-
-
+import "../App.css";
 
 
 export const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -17,20 +18,28 @@ export const CartPage = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "authorization": "Bearer " + localStorage.getItem("token"),
+            authorization: "Bearer" + localStorage.getItem("token"),
           },
         });
-
+  
+        if (response.status !== 200) {
+          throw new Error("Failed to fetch cart items");
+        }
+  
         const data = await response.json();
         console.log(data);
         setCartItems(data.cart);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
+        setError(error.message);
+        setIsLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   const removeFromCart = async (productId) => {
     try {
@@ -38,19 +47,17 @@ export const CartPage = () => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "authorization": "Bearer " + localStorage.getItem("token"),
+          authorization: "Bearer " + localStorage.getItem("token"),
         },
         body: JSON.stringify({ productId }),
       });
-     if (response.status === 401) {
+      if (response.status === 401) {
         window.location.href = "/login";
+      } else if (response.status === 200) {
+        const data = await response.json();
+        console.log(data);
+        setCartItems(cartItems.filter((item) => item._id !== productId));
       }
-      else if (response.status === 200) {
-
-      const data = await response.json();
-      console.log(data);
-      setCartItems(cartItems.filter((item) => item._id !== productId));
-        }
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +72,7 @@ export const CartPage = () => {
       }
       return product;
     });
-  
+
     setCartItems(updatedcartItems);
   };
 
@@ -79,16 +86,15 @@ export const CartPage = () => {
       }
       return product;
     });
-  
+
     setCartItems(updatedcartItems);
   };
 
-
   return (
     <div>
-      <header>
-        Items in cart: {cartItems.length}
-      </header>
+      {cartItems && cartItems.length > 0 ? (
+        <header>Items in cart: {cartItems.length}</header>
+      ) : null}
       <main>
         <ul>
           {cartItems.map((product) => (
@@ -98,16 +104,9 @@ export const CartPage = () => {
               <h4>{product.price}</h4>
               <h5>{product.dealer}</h5>
               <h6>{product.category}</h6>
-              
 
-
-              
-              <button onClick={() => increaseQuantity(product._id)}>
-                +
-              </button>
-              <button onClick={() => decreaseQuantity(product._id)}>
-                -
-              </button>
+              <button onClick={() => increaseQuantity(product._id)}>+</button>
+              <button onClick={() => decreaseQuantity(product._id)}>-</button>
               <p>Quantity: {product.quantity || 1}</p>
               <button onClick={() => removeFromCart(product._id)}>
                 Remove
@@ -122,12 +121,9 @@ export const CartPage = () => {
     </div>
   );
 
-// return (
-//     <div>
-//         hi
-//     </div>
-//     );
+  // return (
+  //     <div>
+  //         hi
+  //     </div>
+  //     );
 };
-
-  
-  
