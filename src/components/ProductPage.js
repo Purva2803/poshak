@@ -94,10 +94,10 @@ const myProducts = products.filter((product) => product.category == selectedCate
               <img src={product.image} alt={product.name} height={"200"} width={"200"} />
             </NavLink>
             <h2>{product.name}</h2>
-            <h3>{product.price}</h3>
-            <h4>{product.dealer}</h4>
-            <h5>{product.category}</h5>
-            <h5>{product.rating}</h5>
+            <h3>price :{product.price}</h3>
+            <h4>dealer :{product.dealer}</h4>
+            <h5>category :{product.category}</h5>
+            <h5>Rating :{product.rating}</h5>
             {isInCart(product._id) ? (
               <NavLink to="/cart">
                 <button>Go to Cart</button>
@@ -120,17 +120,19 @@ const myProducts = products.filter((product) => product.category == selectedCate
             Product Page
           </h1>
           <ProductFilter products={products} setFilteredProducts={handleFilterProducts} />
+          <div style={styles.container}>
           {filteredProducts.map((product) => (
-            <div key={product._id}>
+            
+            <div key={product._id} style={styles.card}>
               <div>
                 <NavLink to={`/products/${product._id}`} key={product._id}>
                   <img src={product.image} alt={product.name} height={"200"} width={"200"} />
                 </NavLink>
                 <h2>{product.name}</h2>
-                <h3>{product.price}</h3>
-                <h4>{product.dealer}</h4>
-                <h5>{product.category}</h5>
-                <h5>{product.rating}</h5>
+                <h3>price :{product.price}</h3>
+                <h4>dealer :{product.dealer}</h4>
+                <h5>category :{product.category}</h5>
+                <h5>rating :{product.rating}</h5>
                 {isInCart(product._id) ? (
                   <NavLink to="/cart">
                     <button>Go to Cart</button>
@@ -143,7 +145,9 @@ const myProducts = products.filter((product) => product.category == selectedCate
                 </button>
               </div>
             </div>
+           
           ))}
+        </div>
         </>
       )}
     </div>
