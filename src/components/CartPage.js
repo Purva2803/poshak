@@ -94,7 +94,9 @@ export const CartPage = () => {
     <div>
       {cartItems && cartItems.length > 0 ? (
         <header>Items in cart: {cartItems.length}</header>
-      ) : null}
+      ) : (
+        <header>No items in cart</header>
+      )}
       <main>
         <ul>
           {cartItems.map((product) => (

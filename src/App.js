@@ -43,11 +43,27 @@ function App() {
   };
 
   const handleCartClick = () => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    else if (token) {
+
     navigate("/cart");
+    }
   };
 
   const handleWishlistClick = () => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    if (token)
+    {
     navigate("/wishlist");
+    }
   };
 
   return (
