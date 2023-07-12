@@ -161,6 +161,7 @@ const styles = {
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: '80px', // Add margin to the bottom of the container to make room for the footer
   },
   card: {
     display: 'flex',
@@ -172,5 +173,7 @@ const styles = {
     borderRadius: '4px',
     margin: '0.5rem',
     width: '200px',
+    position: 'sticky',
+    zIndex: 1, // Ensure the cards are behind the footer
   },
 };

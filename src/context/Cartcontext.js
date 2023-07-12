@@ -29,7 +29,7 @@ export const CartProvider = ({ children }) => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+      
       setCartItems([...cartItems, product]);
     } catch (error) {
       console.log(error);

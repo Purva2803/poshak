@@ -33,8 +33,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  
-    
+    zIndex: 9999, // Ensure the footer is on top of other elements
   },
   icon: {
     color: '#FFD700', // Golden yellow color
