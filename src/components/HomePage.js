@@ -47,33 +47,44 @@ export const HomePage = () => {
     );
   };
   
+
   const styles = {
     container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       textAlign: 'center',
       margin: '20px',
     },
     image: {
       height: '300px', // Adjust the height as needed
       width: 'auto', // Maintain the aspect ratio
+      marginBottom: '20px', // Add some space below the image
+      float: 'left', // Float the image to the left
+      borderRadius: '10px', // Add a border radius
+      marginRight: '20px', // Add some space between the image and the description
     },
     heading: {
       fontFamily: 'Arial, sans-serif',
       fontSize: '18px',
       lineHeight: '1.5',
       marginTop: '20px',
+      marginBottom: '20px',
     },
     categories: {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       marginTop: '20px',
+      flexWrap: 'wrap',
     },
     categoryLink: {
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '200px',
-      height: '150px',
-      background: '#f0f0f0',
+      width: '100px',
+      height: '100px',
+      background: '#FFD700',
       border: '1px solid #ccc',
       borderRadius: '4px',
       color: '#333',
@@ -81,5 +92,11 @@ export const HomePage = () => {
       textDecoration: 'none',
       transition: 'background-color 0.3s ease',
       cursor: 'pointer',
+      margin: '10px', // Add some margin around the category links
+      padding: '10px', // Add some padding to the category links
+      fontFamily: 'Arial, sans-serif',
+      fontWeight: 'bold',
     },
   };
+  
+  

@@ -50,9 +50,11 @@ export const Search = () => {
             {filteredProducts.map((product) => (
               <div key={product._id}>
                 <NavLink to={`/products/${product._id}`} key={product._id}>
+                  <div>
 
-                <h2>{product.name}</h2>
+                <p>{product.name}</p>
                 <p>{product.price}</p>
+                </div>
                 
                 </NavLink>
               </div>
@@ -63,6 +65,7 @@ export const Search = () => {
     );
   };
   
+
   
 
 

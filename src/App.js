@@ -163,10 +163,15 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    fontWeight: "bold",
+    position: "sticky",
+    fontFamily: "sans-serif",
+
   },
   link: {
     margin: "0 20px",
     color: "#FFD700", // Golden yellow color
+    textDecoration : "none"
   },
   icon: {
     color: "#FFD700", // Golden yellow color
@@ -174,6 +179,11 @@ const styles = {
   searchContainer: {
     display: "flex",
     alignItems: "center",
+    fontFamily : "sans-serif",
+    fontWeight : "bold",
+    
+
+
   },
   dropdownContainer: {
     position: "relative",
