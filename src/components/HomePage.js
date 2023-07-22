@@ -13,7 +13,7 @@ export const HomePage = () => {
     <div style={styles.container}>
       <img src={poshak} alt="poshak" style={styles.image} />
       <h2 style={styles.heading}>
-        Welcome to POSHAK, your ultimate destination for Indian clothing! With a
+       <span style={{fontSize:"50px"}}>Welcome to POSHAK </span>, your ultimate destination for Indian clothing! With a
         touch of elegance and a dash of tradition, we bring you the finest
         collection of fashion straight from the heart of India. From vibrant
         sarees to intricately designed lehengas, our carefully curated range

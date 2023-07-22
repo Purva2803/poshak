@@ -69,6 +69,24 @@ function App() {
   return (
     <div className="App">
       <nav style={styles.nav}>
+
+        <NavLink to="/" style={{
+
+          color: "white",
+          fontSize: "30px",
+          fontWeight: "bold",
+          textDecoration: "none",
+        
+          marginRight: "300px",
+          marginTop: "10px",
+          marginBottom: "10px",
+          fontFamily: "sans-serif",
+          letterSpacing: "2px",
+          textShadow: "2px 2px 4px #000000",
+
+        }}>
+          POSHAK
+        </NavLink>
         <NavLink to="/" style={styles.link}>
           Home
         </NavLink>
