@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 
 import {  useEffect, useContext } from 'react';
 import { AuthContext } from ".."
+import { NotificationManager } from 'react-notifications';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,20 +38,21 @@ export const Login = () => {
       });
    
       const data = await response.json();
-      console.log(data);
+      
 
       if (response.ok) {
-        window.alert("Login successful");
+        NotificationManager.success('Login successful', 'Success', 2000);
+        setUser(data.user);
         localStorage.setItem("token", data.encodedToken);
         setToken(data.encodedToken);
         window.location.href = "/";
       } else {
-        window.alert("Login unsuccessful");
-        
+       
+        NotificationManager.info("Login unsuccessful", 'info!', 2000);
       }
     } catch (error) {
       console.error("Error:", error);
-      window.alert("An error occurred. Please try again.");
+      NotificationManager.error('Login unsuccessful', 'Error!', 2000);
     }
   };
 

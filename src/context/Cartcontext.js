@@ -1,4 +1,5 @@
 import React, { createContext, useState ,useEffect} from "react";
+import { NotificationManager } from 'react-notifications';
 
 export const CartContext = createContext();
 
@@ -57,8 +58,16 @@ export const CartProvider = ({ children }) => {
 
   
     const removeFromCart = (productId) => {
+      if(productId){
       const updatedCart = cartItems.filter((product) => product._id !== productId);
+      NotificationManager.success('Item Removed Successfully', 'Success', 2000);
       setCartItems(updatedCart);
+      }
+      else
+      {
+        NotificationManager.info('no items in the cart', 'Info!', 2000);
+      }
+
     };
     
  
@@ -76,10 +85,11 @@ export const CartProvider = ({ children }) => {
         }),
       });
       const data =  response.json();
-      console.log(data);
+     
       const updatedWishlist = wishlist.filter(
         (product) => product._id !== productId
       );
+      NotificationManager.success('Item Removed Successfully', 'Success', 2000);
       setWishlist(updatedWishlist);
 
     };

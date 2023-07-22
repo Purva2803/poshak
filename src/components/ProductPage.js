@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { ProductFilter } from "./Filter";
 import { FaHeart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+import { NotificationManager } from 'react-notifications';
+
 
 
 
@@ -49,9 +51,17 @@ export const ProductPage = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+
+      NotificationManager.success('Added to cart', 'Success', 2000);
+
+
+
+
+      
+      
       setCartItems([...cartItems, product]);
     } catch (error) {
+      NotificationManager.info('Please login to add to cart', 'Info', 2000);
       console.log(error);
     }
   };
@@ -68,9 +78,12 @@ export const ProductPage = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+
+      NotificationManager.success('Added to wishlist', 'Success', 2000);
+      
       setWishlist([...wishlist, product]);
     } catch (error) {
+      NotificationManager.info('Please login to add to wishlist', 'Info', 2000);
       console.log(error);
     }
   };

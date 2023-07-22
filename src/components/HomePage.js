@@ -71,18 +71,20 @@ export const HomePage = () => {
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    flexDirection: "row",
+    alignItems: "left",
     textAlign: "center",
     margin: "20px",
   },
   image: {
-    height: "300px", // Adjust the height as needed
-    width: "auto", // Maintain the aspect ratio
-    marginBottom: "20px", // Add some space below the image
-    float: "left", // Float the image to the left
-    borderRadius: "10px", // Add a border radius
-    marginRight: "20px", // Add some space between the image and the description
+    height: "300px", 
+    width: "auto", 
+    marginBottom: "20px",
+    float: "left", 
+    borderRadius: "10px", 
+    marginRight: "20px", 
+    display: "block",
+
   },
   heading: {
     fontFamily: "Arial, sans-serif",
@@ -93,6 +95,7 @@ const styles = {
   },
   categories: {
     display: "flex",
+    flexDirection: "row",
     justifyContent: "center",
     marginTop: "20px",
     flexWrap: "wrap",

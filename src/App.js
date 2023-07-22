@@ -4,6 +4,8 @@ import Mockman from "mockman-js";
 import { NavLink } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./components/HomePage";
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from 'react-notifications';
 import {
   FaHeart,
   FaCartArrowDown,
@@ -169,6 +171,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <NotificationContainer />
     </div>
   );
 }
