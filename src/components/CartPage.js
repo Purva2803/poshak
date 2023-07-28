@@ -1,4 +1,5 @@
 import React from "react";
+import "../components/css/cartpage.css"
 import { useState, useEffect } from "react";
 import {  AuthContext} from "../context/AuthContext";
 import { NavLink, Navigate } from "react-router-dom";
@@ -6,9 +7,11 @@ import "../App.css";
 import { NotificationManager } from "react-notifications";
 import { useContext } from "react";
 
+
+
+
 export const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useContext(AuthContext);
   const [error, setError] = useState(null);
@@ -20,7 +23,7 @@ export const CartPage = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            authorization: "Bearer" + localStorage.getItem("token"),
+            authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -55,18 +58,19 @@ export const CartPage = () => {
       });
       if (response.status === 401) {
         window.location.href = "/login";
-      } else if (response.status === 200) {
-        const data = await response.json();
-        NotificationManager.success(
-          "Item Removed Successfully",
-          "Success",
-          2000
-        );
-        setCartItems(cartItems.filter((item) => item._id !== productId));
       }
+      const data = await response.json();
+      console.log(data);
+      const updatedCart = cartItems.filter(
+        (product) => product._id !== productId
+      );
+      setCartItems(updatedCart);
+      NotificationManager.success("Item Removed Successfully", "Success", 2000);
     } catch (error) {
       console.log(error);
     }
+
+
   };
   const increaseQuantity = (productId) => {
     const updatedcartItems = cartItems.map((product) => {
@@ -82,20 +86,20 @@ export const CartPage = () => {
 
     setCartItems(updatedcartItems);
   };
-
   const decreaseQuantity = (productId) => {
     const updatedcartItems = cartItems.map((product) => {
       if (product._id === productId) {
         return {
           ...product,
-          quantity: Math.max((product.quantity || 1) - 1, 1),
-          price: product.price * Math.max((product.quantity || 1) - 1, 1),
+          quantity: (product.quantity || 1) - 1,
+          price: product.price * ((product.quantity || 1) - 1),
         };
       }
       return product;
     });
 
     setCartItems(updatedcartItems);
+
   };
 
   return (
@@ -111,40 +115,44 @@ export const CartPage = () => {
           <Navigate to="/login" />
         )}
       </div>
-  
+
       <main>
-        <ul>
+        <ul className="cart-items-list">
           {cartItems.map((product) => (
-            <li key={product._id}>
+            <li key={product._id} className="cart-item">
               <img
                 src={product.image}
                 alt={product.name}
-                height={"200"}
-                width={"200"}
+                className="product-image"
               />
-              <h3>{product.name}</h3>
-              <h4>
-                price: <span>{product.price}</span>
-              </h4>
-              <h5>
-                dealer: <span>{product.dealer}</span>
-              </h5>
-              <h5>category: {product.category}</h5>
-  
-              <button onClick={() => increaseQuantity(product._id)}>+</button>
-              <button onClick={() => decreaseQuantity(product._id)}>-</button>
-              <p>Quantity: {product.quantity || 1}</p>
-              <button onClick={() => removeFromCart(product._id)}>
-                Remove
-              </button>
-              <NavLink to={`/checkout/${product._id}`}>
-                <button onClick={() => {}}>Check Out</button>
-              </NavLink>
+              <div className="product-details">
+                <h3>{product.name}</h3>
+                <h4>
+                  Price: <span>${product.price}</span>
+                </h4>
+                <h5>
+                  Dealer: <span>{product.dealer}</span>
+                </h5>
+                <h5>Category: {product.category}</h5>
+                <div className="quantity-buttons">
+                  <button onClick={() => increaseQuantity(product._id)}>+</button>
+                  <button onClick={() => decreaseQuantity(product._id)}>-</button>
+                  <p>Quantity: {product.quantity || 1}</p>
+                </div>
+                <button onClick={() => removeFromCart(product._id)}>
+                  Remove
+                </button>
+                <NavLink to={`/checkout/${product._id}`}>
+                  <button>Check Out</button>
+                </NavLink>
+              </div>
             </li>
           ))}
         </ul>
       </main>
     </div>
   );
-  
 };
+
+
+

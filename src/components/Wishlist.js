@@ -2,6 +2,7 @@ import React from "react";
 import { CartContext } from "../context/Cartcontext";
 import { useContext } from "react";
 import { useState,useEffect } from "react";
+import "../components/css/wishlist.css"
 
 
 
@@ -77,29 +78,35 @@ export const Wishlist = () => {
   };
 
   return (
-    <div>
-      <header>Items in wishlist: {wishlist.length}</header>
-      {console.log(wishlist)}
+    <div className="wishlist-container">
+      <header className="wishlist-header">
+        Items in wishlist: {wishlist.length}
+      </header>
       <main>
-        <ul>
+        <ul className="wishlist-items-list">
           {wishlist.map((product) => (
-            <li key={product._id}>
-              <img src={product.image} alt={product.name} />
-              <h4>{product.name}</h4>
-              <h5>{product.price}</h5>
-              <h6>{product.dealer}</h6>
-              <p>Quantity: {product.quantity || 1}</p>
-              <button onClick={() => removeFromWishlist(product._id)}>
-                Remove
-              </button>
-              <button onClick={() => increaseQuantity(product._id)}>+1</button>
-              <button onClick={() => decreaseQuantity(product._id)}>-1</button>
+            <li key={product._id} className="wishlist-item">
+              <img src={product.image} alt={product.name} className="product-image" />
+              <div className="product-details">
+                <h4>{product.name}</h4>
+                <h5>{product.price}</h5>
+                <h6>{product.dealer}</h6>
+                <p>Quantity: {product.quantity || 1}</p>
+              </div>
+              <div className="quantity-buttons">
+                <button onClick={() => removeFromWishlist(product._id)}>
+                  Remove
+                </button>
+                <button onClick={() => increaseQuantity(product._id)}>+1</button>
+                <button onClick={() => decreaseQuantity(product._id)}>-1</button>
+              </div>
             </li>
           ))}
         </ul>
       </main>
     </div>
   );
+
 };
 
 

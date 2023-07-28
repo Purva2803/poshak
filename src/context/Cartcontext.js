@@ -51,8 +51,10 @@ export const CartProvider = ({ children }) => {
       const data = await response.json();
       console.log(data);
       setWishlist([...wishlist, product]);
+      NotificationManager.success('Added to wishlist', 'Success', 2000);
     } catch (error) {
       console.log(error);
+      NotificationManager.error('Please login to add to wishlist', 'Error', 2000);
     }
   };
 

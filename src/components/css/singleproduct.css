@@ -1,0 +1,102 @@
+/* CSS for the center container */
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top:100px;
+
+  }
+  
+  /* CSS for the product card */
+  .product-card {
+    width: 300px; /* Set the width to make the card bigger */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+ 
+  .product-image {
+    width: 200px; /* Set the image width as needed */
+    height: 200px; /* Set the image height as needed */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  /* CSS for the product name */
+  .product-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  /* CSS for the product dealer */
+  .product-dealer {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  /* CSS for the product category */
+  .product-category {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  /* CSS for the product price */
+  .product-price {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  /* CSS for the wishlist button */
+  .wishlist-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  /* CSS for the go to cart button */
+  .go-to-cart-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 10px 0;
+  }
+  
+  /* CSS for the add to cart button */
+  .add-to-cart-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  /* CSS for the product description */
+  .product-description {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  
