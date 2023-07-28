@@ -5,14 +5,18 @@ import { FaHeart } from "react-icons/fa";
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../context/Cartcontext";
+import { Slider } from "./Slider";
 
 export const HomePage = () => {
   const { selectedCategory, handleCategory } = useContext(CartContext);
 
   return (
-    <div style={styles.container}>
-      <img src={poshak} alt="poshak" style={styles.image} />
-      <h2 style={styles.heading}>
+    
+     <div>
+      <Slider />
+      <div style={styles.container}>
+      {/* <img src={poshak} alt="poshak" style={styles.image} /> */}
+       <h2 style={styles.heading}>
        <span style={{fontSize:"50px"}}>Welcome to POSHAK </span>, your ultimate destination for Indian clothing! With a
         touch of elegance and a dash of tradition, we bring you the finest
         collection of fashion straight from the heart of India. From vibrant
@@ -57,7 +61,7 @@ export const HomePage = () => {
               alt="lehengas"
               style={{ height: "200px", width: "200px" }}
             />
-            <span
+                       <span
             style={{ color: selectedCategory === "sarees" ? "blue" : "black" ,margin:"10px" , padding:"10px" 
           } }
             >LAHENGAS</span>
@@ -65,14 +69,15 @@ export const HomePage = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "row",
-    alignItems: "left",
+    flexDirection: "column",
+    alignItems: "center",
     textAlign: "center",
     margin: "20px",
   },

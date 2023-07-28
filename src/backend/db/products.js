@@ -28,7 +28,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    image: "https://images.cbazaar.com/images/silver-grey-benarasi-silk-blend-zari-work-saree-sasli1713320-u.jpg",
+    image: "https://www.likeadiva.com/media/pimages/158298216124015.jpg",
     name: "Georgette Embroidered Saree",
     category: "sarees",
     price:1500,

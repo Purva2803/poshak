@@ -4,8 +4,8 @@ import Mockman from "mockman-js";
 import { NavLink } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./components/HomePage";
-import 'react-notifications/lib/notifications.css';
-import { NotificationContainer } from 'react-notifications';
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
 import {
   FaHeart,
   FaCartArrowDown,
@@ -48,11 +48,8 @@ function App() {
     if (!token) {
       navigate("/login");
       return;
-    }
-
-    else if (token) {
-
-    navigate("/cart");
+    } else if (token) {
+      navigate("/cart");
     }
   };
 
@@ -62,31 +59,30 @@ function App() {
       return;
     }
 
-    if (token)
-    {
-    navigate("/wishlist");
+    if (token) {
+      navigate("/wishlist");
     }
   };
 
   return (
     <div className="App">
       <nav style={styles.nav}>
+        <NavLink
+          to="/"
+          style={{
+            color: "white",
+            fontSize: "30px",
+            fontWeight: "bold",
+            textDecoration: "none",
 
-        <NavLink to="/" style={{
-
-          color: "white",
-          fontSize: "30px",
-          fontWeight: "bold",
-          textDecoration: "none",
-        
-          marginRight: "300px",
-          marginTop: "10px",
-          marginBottom: "10px",
-          fontFamily: "sans-serif",
-          letterSpacing: "2px",
-          textShadow: "2px 2px 4px #000000",
-
-        }}>
+            marginRight: "300px",
+            marginTop: "10px",
+            marginBottom: "10px",
+            fontFamily: "sans-serif",
+            letterSpacing: "2px",
+            textShadow: "2px 2px 4px #000000",
+          }}
+        >
           POSHAK
         </NavLink>
         <NavLink to="/" style={styles.link}>
@@ -187,12 +183,12 @@ const styles = {
     fontWeight: "bold",
     position: "sticky",
     fontFamily: "sans-serif",
-
+    zIndex: 9999,
   },
   link: {
     margin: "0 20px",
     color: "#FFD700", // Golden yellow color
-    textDecoration : "none"
+    textDecoration: "none",
   },
   icon: {
     color: "#FFD700", // Golden yellow color
@@ -200,11 +196,8 @@ const styles = {
   searchContainer: {
     display: "flex",
     alignItems: "center",
-    fontFamily : "sans-serif",
-    fontWeight : "bold",
-    
-
-
+    fontFamily: "sans-serif",
+    fontWeight: "bold",
   },
   dropdownContainer: {
     position: "relative",

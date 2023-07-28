@@ -24,7 +24,7 @@ export const Footer = () => {
 const styles = {
   footer: {
     backgroundColor: '#10000e',
-    color: '#FFD700', // Golden yellow color
+    color: '#FFD700',
     position: 'fixed',
     bottom: 0,
     left: 0,
@@ -33,10 +33,10 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    zIndex: 9999, // Ensure the footer is on top of other elements
+    zIndex: 9999, 
   },
   icon: {
-    color: '#FFD700', // Golden yellow color
+    color: '#FFD700', 
     margin: '0 10px',
   },
 };
