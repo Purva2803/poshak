@@ -21,11 +21,13 @@
   
  
   .product-image {
-    width: 200px; /* Set the image width as needed */
-    height: 200px; /* Set the image height as needed */
+    width: 300px; /* Set the image width as needed */
+    height: 300px; /* Set the image height as needed */
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 10px;
+    margin-top: 100px;
+
   }
   
   

@@ -129,9 +129,9 @@ const myProducts = products.filter((product) => product.category == selectedCate
       ) : (
         // Render all products if no category is selected
         <>
-          <h1 style={{ textAlign: "center", color: "red", backgroundColor: "black", padding: "10px", borderRadius: "10px", margin: "10px", fontFamily: "Arial" }}>
+          {/* <h1 style={{ textAlign: "center", color: "red", backgroundColor: "black", padding: "10px", borderRadius: "10px", margin: "10px", fontFamily: "Arial" }}>
             Product Page
-          </h1>
+          </h1> */}
           <ProductFilter products={products} setFilteredProducts={handleFilterProducts} />
           <div style={styles.container}>
           {filteredProducts.map((product) => (
